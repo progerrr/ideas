@@ -1,13 +1,16 @@
 #!/bin/bash
 #изменить recent.jpg на название текущего файла, new.jpg на название нового файла
+#start with sudo
 cd
 mv Downloads/new.jpg shell-theme/theme/
 cd shell-theme/theme
-nvim gnome-shell-theme.gresource.xml
+
 sed "s/look.jpg/new.jpg/g" gnome-shell-theme.gresource.xml > gnome-shell-theme.gresource.xml.new #change recent.jpg to new.jpg
 mv gnome-shell-theme.gresource.xml.new gnome-shell-theme.gresource.xml
-glib-compile-resources gnome-shell-theme.gresource.xml
-nvim gnome-shell.css
+
 sed "s/look.jpg/new.jpg/g" gnome-shell.css > gnome-shell.css.new #change recent.jpg to new.jpg
 mv gnome-shell.css.new gnome-shell.css
+
+glib-compile-resources gnome-shell-theme.gresource.xml
+
 cp gnome-shell-theme.gresource /usr/share/gnome-shell 
